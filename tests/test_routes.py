@@ -185,7 +185,7 @@ class TestAccountService(TestCase):
         resp = self.client.put(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test(self):
+    def test_illegal_methods_on_BASEURL(self):
         """It should test illegal methods on BASE_URL"""
         illegal_methods = ['DELETE', 'PUT']
 
@@ -197,3 +197,8 @@ class TestAccountService(TestCase):
             
             self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    def test_post_method_not_allowed_on_read_account_endpoint(self):
+        """Test illegal methods on read an Account endpoint"""
+        account = self._create_accounts(1)[0]
+        response = self.client.post(f"{BASE_URL}/{account.id}")   
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
