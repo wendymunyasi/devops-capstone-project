@@ -192,3 +192,9 @@ class TestAccountService(TestCase):
         account = self._create_accounts(1)[0]
         response = self.client.post(f"{BASE_URL}/{account.id}")   
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_post_method_not_allowed_on_delete_account_endpoint(self):
+        """Test illegal methods on delete an Account endpoint"""
+        account = self._create_accounts(1)[0]
+        response = self.client.post(f"{BASE_URL}/{account.id}")   
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
