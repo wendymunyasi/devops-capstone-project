@@ -175,16 +175,6 @@ class TestAccountService(TestCase):
 
     ########################################
 
-    def test_delete_method_not_allowed_on_baseurl(self):
-        """It should not allow an illegal method call"""
-        resp = self.client.delete(BASE_URL)
-        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def test_put_method_not_allowed_on_baseurl(self):
-        """It should not allow an illegal method call"""
-        resp = self.client.put(BASE_URL)
-        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
     def test_illegal_methods_on_BASEURL(self):
         """It should test illegal methods on BASE_URL"""
         illegal_methods = ['DELETE', 'PUT']
