@@ -168,3 +168,32 @@ class TestAccountService(TestCase):
         account = self._create_accounts(1)[0]
         resp = self.client.delete(f"{BASE_URL}/{account.id}")
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
+
+    #########################################
+
+    # METHOD NOT ALLOWED
+
+    ########################################
+
+    def test_delete_method_not_allowed_on_baseurl(self):
+        """It should not allow an illegal method call"""
+        resp = self.client.delete(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_put_method_not_allowed_on_baseurl(self):
+        """It should not allow an illegal method call"""
+        resp = self.client.put(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test(self):
+        """It should test illegal methods on BASE_URL"""
+        illegal_methods = ['DELETE', 'PUT']
+
+        for method in illegal_methods:
+            if method == 'DELETE':
+                response = self.client.delete(BASE_URL)
+            elif method == 'PUT':
+                response = self.client.put(BASE_URL)
+            
+            self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
