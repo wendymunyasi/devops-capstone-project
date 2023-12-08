@@ -187,19 +187,19 @@ class TestAccountService(TestCase):
                 response = self.client.delete(BASE_URL)
             elif method == 'PUT':
                 response = self.client.put(BASE_URL)
-            
+
             self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_post_method_not_allowed_on_read_account_endpoint(self):
         """Test illegal methods on read an Account endpoint"""
         account = self._create_accounts(1)[0]
-        response = self.client.post(f"{BASE_URL}/{account.id}")   
+        response = self.client.post(f"{BASE_URL}/{account.id}")
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_post_method_not_allowed_on_delete_account_endpoint(self):
         """Test illegal methods on delete an Account endpoint"""
         account = self._create_accounts(1)[0]
-        response = self.client.post(f"{BASE_URL}/{account.id}")   
+        response = self.client.post(f"{BASE_URL}/{account.id}")
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     ###############################################################
